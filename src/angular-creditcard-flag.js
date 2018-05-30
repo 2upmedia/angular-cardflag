@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('angular-creditcard-flag',[])
-    .directive('creditcardFlag', function() {
+    .directive('creditcardFlag', ['$timeout', function($timeout) {
       return {
         restrict: 'A',
         scope: {
@@ -44,8 +44,10 @@ angular.module('angular-creditcard-flag',[])
                 }
 
                 el.bind('keyup keydown blur', function(e) {
-                    flag(el);
+                  $timeout(function() {
+                    flag(el)
+                  }, 0);
                 });
             }
         };
-});
+}]);
